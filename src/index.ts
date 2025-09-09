@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import api from "./api/api.js";
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
@@ -17,7 +18,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: process.env.NODE_ENV === 'production' ? 'https://fee-api.onrender.com/api-docs/' : `http://localhost:${port}`,
+        url: process.env.NODE_ENV === 'production' ? 'https://fee-api.onrender.com' : `http://localhost:${port}`,
         description: process.env.NODE_ENV === 'production' ? 'Production server' : 'Development server',
       },
     ],
@@ -26,6 +27,14 @@ const swaggerOptions = {
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
+// CORS middleware - Allow all origins for API access
+app.use(cors({
+  origin: true, // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  credentials: true
+}));
 
 // Middleware to parse JSON
 app.use(express.json());

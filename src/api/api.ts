@@ -70,16 +70,29 @@ api.post("/feeCalc", async (req,res) =>{
 	money = parseFloat(moneyStr as string);
 	isMonthly = isMonthlyStr === 'true';
 
+	// Validate required parameters
+	if (isNaN(fees) || isNaN(money)) {
+		return res.status(400).json({message: "Invalid fees or money parameter"});
+	}
+
 	// Logical Input Verifications
 	if(!days && !months){
-		errorMsg(res);
+		return res.status(400).json({message: "Either days or months must be provided"});
 	}
 	if(isMonthly == true && days){
-		errorMsg(res);
+		return res.status(400).json({message: "Cannot specify days when isMonthly is true"});
 	}
 	else if(!isMonthly && months){
-		errorMsg(res);
-	};
+		return res.status(400).json({message: "Cannot specify months when isMonthly is false"});
+	}
+
+	// Validate the time parameter based on isMonthly
+	if (isMonthly && isNaN(months)) {
+		return res.status(400).json({message: "Invalid months parameter"});
+	}
+	if (!isMonthly && isNaN(days)) {
+		return res.status(400).json({message: "Invalid days parameter"});
+	}
 
 	const total = calculateFee(days, months, isMonthly, fees, money);
 
