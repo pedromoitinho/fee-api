@@ -80,59 +80,6 @@ curl -X POST "http://localhost:3000/api/feeCalc?months=3&isMonthly=true&fees=5&m
 "250$ in 10 days"
 ```
 
-## Deployment on Render
-
-### Prerequisites
-
-1. A GitHub account with your repository
-2. A Render account (free tier available)
-
-### Deployment Steps
-
-1. **Push your code to GitHub:**
-   ```bash
-   git add .
-   git commit -m "Prepare for Render deployment"
-   git push origin main
-   ```
-
-2. **Deploy on Render:**
-   
-   **Option A: Using render.yaml (Recommended)**
-   - The project includes a `render.yaml` file for automatic deployment
-   - Connect your GitHub repository to Render
-   - Render will automatically detect and use the configuration
-
-   **Option B: Manual Setup**
-   - Go to [Render Dashboard](https://dashboard.render.com/)
-   - Click "New" → "Web Service"
-   - Connect your GitHub repository
-   - Configure the service:
-     - **Build Command:** `npm install && npm run build`
-     - **Start Command:** `npm start`
-     - **Environment:** Node
-     - **Plan:** Free (or your preferred plan)
-
-3. **Environment Variables:**
-   - Set `NODE_ENV=production` in your Render service settings
-   - The `PORT` environment variable is automatically provided by Render
-
-4. **Update Swagger URL:**
-   - After deployment, update the server URL in the Swagger configuration
-   - Replace `your-app-name` in `src/index.ts` with your actual Render app name
-
-### Post-Deployment
-
-- Your API will be available at: `https://your-app-name.onrender.com`
-- Swagger docs will be available at: `https://your-app-name.onrender.com/api-docs`
-- Test the API using the provided endpoints
-
-### Important Notes
-
-- Free tier services on Render may sleep after 15 minutes of inactivity
-- First request after sleeping may take 30+ seconds to respond
-- For production applications, consider upgrading to a paid plan
-
 ## Project Structure
 
 ```
