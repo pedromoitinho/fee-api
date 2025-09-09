@@ -17,7 +17,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: process.env.NODE_ENV === 'production' ? 'https://your-app-name.onrender.com' : `http://localhost:${port}`,
+        url: process.env.NODE_ENV === 'production' ? 'https://fee-api.onrender.com/api-docs/' : `http://localhost:${port}`,
         description: process.env.NODE_ENV === 'production' ? 'Production server' : 'Development server',
       },
     ],
