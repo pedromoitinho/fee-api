@@ -1,5 +1,5 @@
 import express from "express";
-import api from "./api/api.ts";
+import api from "./api/api.js";
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 
@@ -17,12 +17,12 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `http://localhost:${port}`,
-        description: 'Development server',
+        url: process.env.NODE_ENV === 'production' ? 'https://your-app-name.onrender.com' : `http://localhost:${port}`,
+        description: process.env.NODE_ENV === 'production' ? 'Production server' : 'Development server',
       },
     ],
   },
-  apis: ['./src/api/*.ts'], // Path to the API docs
+  apis: process.env.NODE_ENV === 'production' ? ['./dist/api/*.js'] : ['./src/api/*.ts'], // Path to the API docs
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);

@@ -1,6 +1,6 @@
 // API TO CALCULATE FEES
 import express from "express";
-import { calculateFee } from "../functions/feeCalculator.ts";
+import { calculateFee } from "../functions/feeCalculator.js";
 
 const api = express.Router();
 api.use(express.json());
