@@ -45,21 +45,8 @@ const errorMsg = (res: express.Response) => res.status(400).json({message: "Erro
  *     responses:
  *       200:
  *         description: Successful calculation
- *         content:
- *           application/json:
- *             schema:
- *               type: string
- *               example: "50$ in 10 days"
  *       400:
  *         description: Invalid input parameters
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: "Error"
  */
 api.post("/feeCalc", async (req,res) =>{
 	const {days: daysStr, months: monthsStr, isMonthly: isMonthlyStr, fees: feesStr, money: moneyStr} = req.query;
