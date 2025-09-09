@@ -22,29 +22,29 @@ A TypeScript/Express.js API for calculating fees based on time periods, with Swa
 ### Prerequisites
 
 - Node.js >= 18.0.0
-- pnpm (recommended) or npm
+- npm (included with Node.js)
 
 ### Setup
 
 1. Clone the repository
 2. Install dependencies:
    ```bash
-   pnpm install
+   npm install
    ```
 
 3. Run in development mode:
    ```bash
-   pnpm run dev
+   npm run dev
    ```
 
 4. Build for production:
    ```bash
-   pnpm run build
+   npm run build
    ```
 
 5. Start production server:
    ```bash
-   pnpm start
+   npm start
    ```
 
 The server will run on `http://localhost:3000` by default.
@@ -98,10 +98,10 @@ curl -X POST "http://localhost:3000/api/feeCalc?months=3&isMonthly=true&fees=5&m
 
 ## Development Scripts
 
-- `pnpm run dev` - Start development server with hot reload
-- `pnpm run build` - Compile TypeScript to JavaScript
-- `pnpm start` - Start production server
-- `pnpm run postinstall` - Automatically runs build after install
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Compile TypeScript to JavaScript
+- `npm start` - Start production server
+- `npm run postinstall` - Automatically runs build after install
 
 ## Dependencies
 
